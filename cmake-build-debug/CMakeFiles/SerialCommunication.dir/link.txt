@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/SerialCommunication.dir/SerialCommunication/Main.cpp.o CMakeFiles/SerialCommunication.dir/SerialCommunication/ApplicationUtilities.cpp.o CMakeFiles/SerialCommunication.dir/SerialCommunication/MessageLogger.cpp.o  -o SerialCommunication -lCppSerialPort -lncurses 
