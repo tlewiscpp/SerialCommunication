@@ -10,9 +10,9 @@
 #
 ##########################################
 
-baseName="TRMIDoubleCheckBox"
-programLongName="TRMIDoubleCheckBox"
-programName="TRMIDoubleCheckBox"
+baseName="SerialCommunication"
+programLongName="SerialCommunication"
+programName="SerialCommunication"
 iconName="$baseName.png"
 skeletonDesktopFileName=".$baseName.desktop.skel"
 desktopFileName="$baseName.desktop"
@@ -20,9 +20,9 @@ desktopFileName="$baseName.desktop"
 absolutePath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 fileName="${absolutePath##*/}"
 filePath="$(dirname "$absolutePath")/"
-sourceDir="$filePath/inspectionapp/src/"
-utilityDir="$filePath/inspection-app/utility/"
-resourceDir="$filePath/inspection-app/resources/"
+sourceDir="$filePath/SerialCommunication/"
+utilityDir="$filePath/utility/"
+resourceDir="$filePath/resources/"
 iconPath="$resourceDir/$iconName"
 globalBinDir="/usr/bin/"
 buildType="Release"
@@ -295,7 +295,7 @@ function bailout() {
 function generateDesktopFile() {
     copyFile "$utilityDir/$skeletonDesktopFileName" "$buildDir/$desktopFileName" || { echo "Failed to generate desktop file, bailing out"; exit 1; }
     copyFile "$iconPath" "$buildDir/" || { echo "Failed to generate desktop file, bailing out"; exit 1; }  
-    appendStringToFile "Exec=$buildDir/inspection-app/$programName" "$buildDir/$desktopFileName" || { echo "Failed to generate desktop file, bailing out"; exit 1; }
+    appendStringToFile "Exec=$buildDir/$programName" "$buildDir/$desktopFileName" || { echo "Failed to generate desktop file, bailing out"; exit 1; }
     appendStringToFile "Icon=$buildDir/$iconName" "$buildDir/$desktopFileName" || { echo "Failed to generate desktop file, bailing out"; exit 1; }
 }
 
@@ -366,7 +366,7 @@ runMake || { echo "make failed, bailing out"; exit 1; }
 generateDesktopFile || { echo "Could not generate desktop file, bailing out"; exit 1; }
 createDirectory "$appDir" || { echo "Could not create directory \"$appDir\", bailing out"; exit 1; }
 copyFile "$buildDir/$desktopFileName" "$appDir" || { echo "Could not copy desktop file to application directory, bailing out"; exit 1; }
-suLinkFile "$buildDir/inspection-app/$programName" "$globalBinDir"  || { echo "Could not link file, bailing out"; exit 1; }
+suLinkFile "$buildDir/$programName" "$globalBinDir"  || { echo "Could not link file, bailing out"; exit 1; }
 createDirectory "$HOME/Desktop" || { echo "Could not create directory \"$HOME/Desktop\", bailing out"; exit 1; }
 copyFile "$buildDir/$desktopFileName" "$HOME/Desktop/"
 $SUDO chmod +x "$HOME/Desktop/" || { echo "Could not mark desktop file executable, bailing out"; exit 1; }
